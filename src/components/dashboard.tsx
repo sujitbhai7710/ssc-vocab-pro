@@ -417,27 +417,27 @@ export function Dashboard() {
       </Dialog>
 
       {/* Overall Progress Bar */}
-      <Card className="mt-6 bg-gradient-to-r from-[#1a365d] to-[#2d4a7c] text-white">
-        <CardContent className="p-4">
+      <div className="mt-6 rounded-xl border border-[#2d4a7c]/30 bg-gradient-to-r from-[#1a365d] to-[#2d4a7c] text-white shadow-sm py-6">
+        <div className="px-6">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-blue-200">Overall Progress</span>
             <span className="text-sm font-bold">{readPercentage}%</span>
           </div>
-          <Progress value={readPercentage} className="h-3 bg-white/20" />
+          <Progress value={readPercentage} className="h-3 bg-white/20 [&>[data-slot=progress-indicator]]:bg-white" />
           <div className="flex items-center justify-between mt-3 text-sm text-blue-200">
             <span>{totalRead} of {totalQuestions} words read</span>
             <Button
               size="sm"
               variant="outline"
-              className="border-white/30 text-white hover:bg-white/10"
+              className="border-white/30 bg-white/10 text-white hover:bg-white/20 hover:text-white"
               onClick={() => setCurrentView('read')}
             >
               Continue Reading
               <ArrowRight className="h-4 w-4 ml-1" />
             </Button>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }
