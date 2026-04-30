@@ -1,0 +1,80 @@
+# dependencies
+node_modules/
+/.pnp
+.pnp.*
+
+# next.js build output
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug logs
+npm-debug.log*
+yarn-debug.log*
+.pnpm-debug.log*
+dev.log
+server.log
+
+# env files
+.env*
+!.env.example
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# OpenNext
+.open-next
+
+# wrangler
+.wrangler
+.dev.vars*
+
+# Generated/temp files from data processing
+bengali_progress.json
+final_dataset.json
+missing_words.json
+unique_words.json
+unique_words_clean.json
+word_list.json
+pdf1_*.txt
+pdf1_*.json
+pdf2_*.txt
+pdf2_*.json
+translit_*.json
+generate_result_*.py
+gen-*.mjs
+gen-*.py
+gen-*.sh
+gen1.mjs
+generate-*.mjs
+generate-dict.mjs
+
+# Agent/skills directories
+.zscripts/
+agent-ctx/
+skills/
+download/
+upload/
+
+# CF Worker (separate repo)
+cf-worker/
+
+# DB
+db/
+
+# Other non-essential
+Caddyfile
+examples/
+mini-services/
+prisma/
+worklog.md
