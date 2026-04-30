@@ -10,6 +10,7 @@ import {
   cfGetProblematicWords,
   cfGetReadWords,
   cfGetTestResults,
+  cfResetAccount,
 } from './cf-api';
 
 export type AppView =
@@ -134,6 +135,7 @@ interface AppState {
 
   // Reset
   resetTest: () => void;
+  resetAccount: () => Promise<void>;
 }
 
 const defaultTestConfig: TestConfig = {
@@ -325,6 +327,30 @@ export const useAppStore = create<AppState>()(
           testStartTime: 0,
           testTimeRemaining: 0,
         }),
+      resetAccount: async () => {
+        const { user } = get();
+        // Clear from D1 if logged in
+        if (user?.id) {
+          try {
+            await cfResetAccount(user.id);
+          } catch {
+            // Continue even if D1 reset fails
+          }
+        }
+        // Clear all local state
+        set({
+          problematicWords: [],
+          readWords: [],
+          testResults: [],
+          testConfig: defaultTestConfig,
+          testQuestions: [],
+          testAnswers: [],
+          currentQuestionIndex: 0,
+          testStartTime: 0,
+          testTimeRemaining: 0,
+          currentTestResult: null,
+        });
+      },
     }),
     {
       name: 'ssc-vocab-store',

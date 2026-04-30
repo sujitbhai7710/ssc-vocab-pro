@@ -75,6 +75,15 @@ export async function cfRemoveReadWord(userId: string, word: string, type: strin
   return res.json();
 }
 
+// Reset Account API
+export async function cfResetAccount(userId: string) {
+  const res = await cfFetch('/api/reset-account', {
+    method: 'POST',
+    body: JSON.stringify({ userId }),
+  });
+  return res.json();
+}
+
 // Test Results API
 export async function cfSaveTestResult(userId: string, totalQuestions: number, correctAnswers: number, wrongAnswers: number, timeTaken: number, testConfig: unknown) {
   const res = await cfFetch('/api/test-result', {

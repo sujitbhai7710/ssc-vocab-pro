@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useAppStore } from '@/lib/store';
 import { loadDataset, SECTION_COLORS, SECTION_ICONS } from '@/lib/questions';
 import { Button } from '@/components/ui/button';
@@ -17,7 +17,16 @@ import {
   TrendingUp,
   ArrowRight,
   ListChecks,
+  RotateCcw,
 } from 'lucide-react';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from '@/components/ui/dialog';
+import { useToast } from '@/hooks/use-toast';
 
 export function Dashboard() {
   const {
@@ -30,7 +39,11 @@ export function Dashboard() {
     testResults,
     isLoggedIn,
     loadUserData,
+    resetAccount,
   } = useAppStore();
+  const { toast } = useToast();
+  const [showResetDialog, setShowResetDialog] = useState(false);
+  const [resetting, setResetting] = useState(false);
 
   const loading = sections.length === 0;
 
@@ -316,6 +329,92 @@ export function Dashboard() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Danger Zone - Reset Account */}
+      {isLoggedIn && (
+        <Card className="mt-6 border-red-200 bg-red-50/50">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-lg text-red-700 flex items-center gap-2">
+              <AlertTriangle className="h-5 w-5" />
+              Danger Zone
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="flex items-center justify-between flex-wrap gap-3">
+            <div>
+              <p className="text-sm font-medium text-red-800">Reset Account</p>
+              <p className="text-xs text-red-600/70">
+                Clear all your read words, problematic words, and test results. This cannot be undone.
+              </p>
+            </div>
+            <Button
+              variant="destructive"
+              size="sm"
+              onClick={() => setShowResetDialog(true)}
+            >
+              <RotateCcw className="h-4 w-4 mr-1.5" />
+              Reset Account
+            </Button>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Reset Confirmation Dialog */}
+      <Dialog open={showResetDialog} onOpenChange={setShowResetDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <AlertTriangle className="h-5 w-5 text-red-500" />
+              Reset Your Account?
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-3">
+            <p className="text-sm text-gray-600">
+              This will permanently delete all your data:
+            </p>
+            <ul className="text-sm text-gray-500 list-disc list-inside space-y-1">
+              <li>{readWords.length} read words</li>
+              <li>{problematicWords.length} problematic words</li>
+              <li>{testResults.length} test results</li>
+            </ul>
+            <p className="text-sm font-medium text-red-600">
+              This action cannot be undone. Are you sure?
+            </p>
+          </div>
+          <DialogFooter className="gap-2">
+            <Button variant="outline" onClick={() => setShowResetDialog(false)} disabled={resetting}>
+              Cancel
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={async () => {
+                setResetting(true);
+                try {
+                  await resetAccount();
+                  toast({ title: 'Account Reset', description: 'All your data has been cleared.' });
+                } catch {
+                  toast({ title: 'Error', description: 'Failed to reset account. Please try again.', variant: 'destructive' });
+                } finally {
+                  setResetting(false);
+                  setShowResetDialog(false);
+                }
+              }}
+              disabled={resetting}
+            >
+              {resetting ? (
+                <>
+                  <div className="h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-1.5" />
+                  Resetting...
+                </>
+              ) : (
+                <>
+                  <RotateCcw className="h-4 w-4 mr-1" />
+                  Yes, Reset Everything
+                </>
+              )}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       {/* Overall Progress Bar */}
       <Card className="mt-6 bg-gradient-to-r from-[#1a365d] to-[#2d4a7c] text-white">

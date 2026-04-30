@@ -8,7 +8,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
-import { Search, BookOpen, BookmarkPlus, ChevronLeft, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Search, BookOpen, BookmarkPlus, ChevronLeft, ArrowRight, CheckCircle2, X, CheckSquare, Square, BookOpenCheck, BookmarkPlus as BookmarkPlusIcon } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { ExplainSection } from '@/components/word-explain';
 
@@ -164,6 +165,10 @@ function QuestionList({
   const { toast } = useToast();
   const [yearFilter, setYearFilter] = useState<string>('all');
 
+  // Multi-select state
+  const [selectMode, setSelectMode] = useState(false);
+  const [selectedQuestions, setSelectedQuestions] = useState<Set<string>>(new Set());
+
   // Extract available years from section questions
   const availableYears = useMemo(() => {
     const years = new Set<string>();
@@ -251,11 +256,105 @@ function QuestionList({
     }
   };
 
+  // Multi-select handlers
+  const getQuestionKey = (question: Question) => `${question.word}::${question.type}`;
+
+  const toggleSelect = (question: Question) => {
+    const key = getQuestionKey(question);
+    const next = new Set(selectedQuestions);
+    if (next.has(key)) {
+      next.delete(key);
+    } else {
+      next.add(key);
+    }
+    setSelectedQuestions(next);
+  };
+
+  const selectAll = () => {
+    const allKeys = new Set(paginatedQuestions.map(q => getQuestionKey(q)));
+    if (allKeys.size === selectedQuestions.size && [...allKeys].every(k => selectedQuestions.has(k))) {
+      setSelectedQuestions(new Set());
+    } else {
+      setSelectedQuestions(allKeys);
+    }
+  };
+
+  const exitSelectMode = () => {
+    setSelectMode(false);
+    setSelectedQuestions(new Set());
+  };
+
+  const batchMarkRead = () => {
+    if (requireAuth()) return;
+    let addedCount = 0;
+    let removedCount = 0;
+    selectedQuestions.forEach(key => {
+      const [word, type] = key.split('::');
+      // Find the question to get exam info
+      const question = section.questions.find(q => q.word === word && q.type === type);
+      const isRead = readWords.some(rw => rw.word === word && rw.type === type);
+      if (isRead) {
+        removeReadWord(word, type);
+        removedCount++;
+      } else {
+        addReadWord({
+          word,
+          type,
+          exam: question?.exam,
+          readAt: Date.now(),
+        });
+        addedCount++;
+      }
+    });
+    toast({
+      title: 'Batch Update',
+      description: `${addedCount} marked as read${removedCount > 0 ? `, ${removedCount} removed from read` : ''}`,
+    });
+    setSelectedQuestions(new Set());
+    setSelectMode(false);
+  };
+
+  const batchMarkProblematic = () => {
+    if (requireAuth()) return;
+    let addedCount = 0;
+    let removedCount = 0;
+    selectedQuestions.forEach(key => {
+      const [word, type] = key.split('::');
+      const question = section.questions.find(q => q.word === word && q.type === type);
+      const isProb = problematicWords.some(pw => pw.word === word && pw.type === type);
+      if (isProb) {
+        removeProblematicWord(word, type);
+        removedCount++;
+      } else {
+        addProblematicWord({
+          word,
+          type,
+          exam: question?.exam,
+          source: question?.source || 'unknown',
+          questionId: question?.id,
+          addedAt: Date.now(),
+        });
+        addedCount++;
+      }
+    });
+    toast({
+      title: 'Batch Update',
+      description: `${addedCount} marked as problematic${removedCount > 0 ? `, ${removedCount} removed from problematic` : ''}`,
+    });
+    setSelectedQuestions(new Set());
+    setSelectMode(false);
+  };
+
   const isWordRead = (word: string, type: string) =>
     readWords.some((rw) => rw.word === word && rw.type === type);
 
   const isProblematic = (word: string, type: string) =>
     problematicWords.some((pw) => pw.word === word && pw.type === type);
+
+  // Reset selection when page changes
+  useEffect(() => {
+    setSelectedQuestions(new Set());
+  }, [page]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-6">
@@ -271,7 +370,56 @@ function QuestionList({
             {yearFilter === 'all' ? `${section.total_questions} questions` : `${filteredQuestions.length} of ${section.total_questions} questions`}
           </p>
         </div>
+        {/* Select Mode Toggle */}
+        <Button
+          variant="outline"
+          size="sm"
+          className={selectMode ? 'border-[#1a365d] text-[#1a365d] bg-[#1a365d]/5' : ''}
+          onClick={() => selectMode ? exitSelectMode() : setSelectMode(true)}
+        >
+          {selectMode ? <X className="h-4 w-4 mr-1" /> : <CheckSquare className="h-4 w-4 mr-1" />}
+          {selectMode ? 'Cancel' : 'Select'}
+        </Button>
       </div>
+
+      {/* Select Mode Action Bar */}
+      {selectMode && (
+        <div className="mb-4 p-3 bg-[#1a365d]/5 rounded-lg border border-[#1a365d]/20 flex items-center justify-between flex-wrap gap-2">
+          <div className="flex items-center gap-3">
+            <Button variant="ghost" size="sm" onClick={selectAll}>
+              {selectedQuestions.size === paginatedQuestions.length && paginatedQuestions.length > 0 ? (
+                <CheckSquare className="h-4 w-4 mr-1 text-[#1a365d]" />
+              ) : (
+                <Square className="h-4 w-4 mr-1" />
+              )}
+              {selectedQuestions.size === paginatedQuestions.length && paginatedQuestions.length > 0 ? 'Deselect All' : 'Select All'}
+            </Button>
+            <span className="text-sm text-gray-500">
+              {selectedQuestions.size} selected
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Button
+              size="sm"
+              className="bg-green-600 hover:bg-green-700 text-white"
+              disabled={selectedQuestions.size === 0}
+              onClick={batchMarkRead}
+            >
+              <BookOpen className="h-4 w-4 mr-1" />
+              Mark Read ({selectedQuestions.size})
+            </Button>
+            <Button
+              size="sm"
+              className="bg-red-500 hover:bg-red-600 text-white"
+              disabled={selectedQuestions.size === 0}
+              onClick={batchMarkProblematic}
+            >
+              <BookmarkPlus className="h-4 w-4 mr-1" />
+              Mark Problematic ({selectedQuestions.size})
+            </Button>
+          </div>
+        </div>
+      )}
 
       {/* Search & Year Filter */}
       <div className="flex flex-wrap gap-2 mb-6">
@@ -325,101 +473,128 @@ function QuestionList({
         {paginatedQuestions.map((question) => {
           const read = isWordRead(question.word, question.type);
           const problematic = isProblematic(question.word, question.type);
+          const isSelected = selectedQuestions.has(getQuestionKey(question));
 
           return (
             <Card
               key={question.id}
-              className={`transition-all ${read ? 'border-l-4 border-l-green-400' : ''} ${
-                problematic ? 'border-l-4 border-l-red-400' : ''
-              } ${read && problematic ? 'border-l-4 border-l-amber-400' : ''}`}
+              className={`transition-all ${
+                selectMode && isSelected ? 'ring-2 ring-[#1a365d] bg-[#1a365d]/5' : ''
+              } ${read && !selectMode ? 'border-l-4 border-l-green-400' : ''} ${
+                problematic && !selectMode ? 'border-l-4 border-l-red-400' : ''
+              } ${read && problematic && !selectMode ? 'border-l-4 border-l-amber-400' : ''}`}
+              onClick={selectMode ? () => toggleSelect(question) : undefined}
             >
               <CardContent className="p-3 sm:p-4">
-                <div className="flex items-start justify-between mb-2">
-                  <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
-                    <span className="text-xs text-gray-400">Q{question.question_number}</span>
-                    <span className="font-semibold text-[#1a365d] text-base sm:text-lg">
-                      {question.word}
-                    </span>
-                    <Badge
-                      variant="outline"
-                      className={
-                        question.type === 'synonym'
-                          ? 'bg-blue-50 text-blue-700 border-blue-200'
-                          : 'bg-red-50 text-red-700 border-red-200'
-                      }
-                    >
-                      {question.type === 'synonym' ? 'Synonym' : 'Antonym'}
-                    </Badge>
-                    {question.exam && question.exam !== 'MIXED' && (
-                      <Badge variant="secondary" className="text-xs">
-                        {question.exam}
-                      </Badge>
+                <div className="flex items-start gap-2">
+                  {/* Checkbox in select mode */}
+                  {selectMode && (
+                    <Checkbox
+                      checked={isSelected}
+                      onCheckedChange={() => toggleSelect(question)}
+                      className="mt-1 shrink-0"
+                      onClick={(e) => e.stopPropagation()}
+                    />
+                  )}
+
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-start justify-between mb-2">
+                      <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+                        <span className="text-xs text-gray-400">Q{question.question_number}</span>
+                        <span className="font-semibold text-[#1a365d] text-base sm:text-lg">
+                          {question.word}
+                        </span>
+                        <Badge
+                          variant="outline"
+                          className={
+                            question.type === 'synonym'
+                              ? 'bg-blue-50 text-blue-700 border-blue-200'
+                              : 'bg-red-50 text-red-700 border-red-200'
+                          }
+                        >
+                          {question.type === 'synonym' ? 'Synonym' : 'Antonym'}
+                        </Badge>
+                        {question.exam && question.exam !== 'MIXED' && (
+                          <Badge variant="secondary" className="text-xs">
+                            {question.exam}
+                          </Badge>
+                        )}
+                        {question.date && (
+                          <span className="text-xs text-gray-400 hidden sm:inline">{question.date}</span>
+                        )}
+                        {/* Status badges in select mode */}
+                        {selectMode && read && (
+                          <Badge className="bg-green-100 text-green-700 text-xs">Read</Badge>
+                        )}
+                        {selectMode && problematic && (
+                          <Badge className="bg-red-100 text-red-700 text-xs">Problematic</Badge>
+                        )}
+                      </div>
+                    </div>
+
+                    {question.sentence && (
+                      <p className="text-sm text-gray-600 italic mb-2 bg-gray-50 p-2 rounded">
+                        {question.sentence}
+                      </p>
                     )}
-                    {question.date && (
-                      <span className="text-xs text-gray-400 hidden sm:inline">{question.date}</span>
+
+                    {/* Options */}
+                    <div className="grid grid-cols-2 gap-1.5 sm:gap-2 mb-2">
+                      {question.options.map((option, idx) => {
+                        const isCorrect = idx + 1 === question.correct_answer;
+                        return (
+                          <div
+                            key={idx}
+                            className={`flex items-center gap-1.5 sm:gap-2 p-1.5 sm:p-2 rounded text-xs sm:text-sm ${
+                              isCorrect
+                                ? 'bg-green-50 border border-green-200 text-green-800 font-medium'
+                                : 'bg-gray-50 border border-gray-200 text-gray-600'
+                            }`}
+                          >
+                            <span
+                              className={`h-4 w-4 sm:h-5 sm:w-5 rounded-full flex items-center justify-center text-[10px] sm:text-xs font-bold shrink-0 ${
+                                isCorrect
+                                  ? 'bg-green-500 text-white'
+                                  : 'bg-gray-200 text-gray-500'
+                              }`}
+                            >
+                              {String.fromCharCode(65 + idx)}
+                            </span>
+                            <span className="truncate">{option}</span>
+                            {isCorrect && <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-green-500 ml-auto shrink-0" />}
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    {/* Actions row - hidden in select mode */}
+                    {!selectMode && (
+                      <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+                        <Button
+                          variant={read ? 'default' : 'outline'}
+                          size="sm"
+                          className={`text-xs h-7 sm:h-8 ${read ? 'bg-green-600 hover:bg-green-700 text-white' : 'border-green-300 text-green-700 hover:bg-green-50'}`}
+                          onClick={() => handleMarkRead(question)}
+                        >
+                          <BookOpen className="h-3 w-3 sm:h-3.5 sm:w-3.5 mr-1" />
+                          {read ? '✓ Read' : 'Mark Read'}
+                        </Button>
+                        <Button
+                          variant={problematic ? 'default' : 'outline'}
+                          size="sm"
+                          className={`text-xs h-7 sm:h-8 ${problematic ? 'bg-red-500 hover:bg-red-600 text-white' : 'border-red-300 text-red-600 hover:bg-red-50'}`}
+                          onClick={() => handleAddProblematic(question)}
+                        >
+                          <BookmarkPlus className="h-3 w-3 sm:h-3.5 sm:w-3.5 mr-1" />
+                          {problematic ? '✓ Problematic' : 'Mark Problematic'}
+                        </Button>
+                      </div>
                     )}
+
+                    {/* Explain Section - hidden in select mode for cleaner UI */}
+                    {!selectMode && <ExplainSection question={question} />}
                   </div>
                 </div>
-
-                {question.sentence && (
-                  <p className="text-sm text-gray-600 italic mb-2 bg-gray-50 p-2 rounded">
-                    {question.sentence}
-                  </p>
-                )}
-
-                {/* Options */}
-                <div className="grid grid-cols-2 gap-1.5 sm:gap-2 mb-2">
-                  {question.options.map((option, idx) => {
-                    const isCorrect = idx + 1 === question.correct_answer;
-                    return (
-                      <div
-                        key={idx}
-                        className={`flex items-center gap-1.5 sm:gap-2 p-1.5 sm:p-2 rounded text-xs sm:text-sm ${
-                          isCorrect
-                            ? 'bg-green-50 border border-green-200 text-green-800 font-medium'
-                            : 'bg-gray-50 border border-gray-200 text-gray-600'
-                        }`}
-                      >
-                        <span
-                          className={`h-4 w-4 sm:h-5 sm:w-5 rounded-full flex items-center justify-center text-[10px] sm:text-xs font-bold shrink-0 ${
-                            isCorrect
-                              ? 'bg-green-500 text-white'
-                              : 'bg-gray-200 text-gray-500'
-                          }`}
-                        >
-                          {String.fromCharCode(65 + idx)}
-                        </span>
-                        <span className="truncate">{option}</span>
-                        {isCorrect && <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-green-500 ml-auto shrink-0" />}
-                      </div>
-                    );
-                  })}
-                </div>
-
-                {/* Actions row */}
-                <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
-                  <Button
-                    variant={read ? 'default' : 'outline'}
-                    size="sm"
-                    className={`text-xs h-7 sm:h-8 ${read ? 'bg-green-600 hover:bg-green-700 text-white' : 'border-green-300 text-green-700 hover:bg-green-50'}`}
-                    onClick={() => handleMarkRead(question)}
-                  >
-                    <BookOpen className="h-3 w-3 sm:h-3.5 sm:w-3.5 mr-1" />
-                    {read ? '✓ Read' : 'Mark Read'}
-                  </Button>
-                  <Button
-                    variant={problematic ? 'default' : 'outline'}
-                    size="sm"
-                    className={`text-xs h-7 sm:h-8 ${problematic ? 'bg-red-500 hover:bg-red-600 text-white' : 'border-red-300 text-red-600 hover:bg-red-50'}`}
-                    onClick={() => handleAddProblematic(question)}
-                  >
-                    <BookmarkPlus className="h-3 w-3 sm:h-3.5 sm:w-3.5 mr-1" />
-                    {problematic ? '✓ Problematic' : 'Mark Problematic'}
-                  </Button>
-                </div>
-
-                {/* Explain Section */}
-                <ExplainSection question={question} />
               </CardContent>
             </Card>
           );
