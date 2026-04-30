@@ -3200,8 +3200,7 @@
     "bengali_translit": "onubhabhin"
   },
   "calm": {
-    "bengali": "শান্ত",
-    "bengali_translit": "shanto"
+    "meaning": "শান্ত"
   },
   "calm down": {
     "bengali": "শান্ত হওয়া",
@@ -17204,8 +17203,7 @@
     "bengali_translit": "sthan"
   },
   "placid": {
-    "bengali": "শান্ত",
-    "bengali_translit": "shanto"
+    "meaning": "শান্ত"
   },
   "placidity": {
     "bengali": "শান্ততা",
@@ -28104,5 +28102,614 @@
   },
   "Thrilling": {
     "meaning": "উত্তেজক"
+  },
+  "well": {
+    "meaning": "ভালো"
+  },
+  "what if it is?": {
+    "meaning": "যদি তা তো সত্যি?"
+  },
+  "you are not afraid of anything, you": {
+    "meaning": "তুমি কিছুতেই ভীত নও"
+  },
+  "('habitual') may be replaced by '_________'": {
+    "meaning": "('অভ্যাসগত') এর পরিবর্তে '_________' ব্যবহার করা যেতে পারে"
+  },
+  "a bird of a feather people who": {
+    "meaning": "একই ধরনের মানুষ"
+  },
+  "a blessing in disguise": {
+    "meaning": "অনিচ্ছাকৃত ভাগ্যের সুবিধা"
+  },
+  "a deal of agreement done in a company or firm": {
+    "meaning": "কোম্পানি বা প্রতিষ্ঠানে করা একটি চুক্তি"
+  },
+  "a diamond in the rough": {
+    "meaning": "অপরিশোধিত হীরা"
+  },
+  "a dime a dozen": {
+    "meaning": "সহজে পাওয়া যায় এমন"
+  },
+  "a doubtful look or examination of one's motives": {
+    "meaning": "কারণ পরীক্ষা বা সন্দেহজনক দৃষ্টি"
+  },
+  "a drop in the ocean": {
+    "meaning": "সাগরে এক ফোঁটা"
+  },
+  "a film shown during the day, especially in the afternoon": {
+    "meaning": "দিবাকালীন চলচ্চিত্র, বিশেষ করে অপরাহ্নে"
+  },
+  "a fish out of water": {
+    "meaning": "জলের বাইরে মাছ"
+  },
+  "a good critic should also be a person of great candour": {
+    "meaning": "একজন ভাল সমালোচকও হওয়া উচিত একজন সৎ ব্যক্তি"
+  },
+  "a list of books": {
+    "meaning": "বইয়ের তালিকা"
+  },
+  "a lively, cheerful outgoing person": {
+    "meaning": "জীবন্ত, আনন্দময়, সামনের দিকে অগ্রসর ব্যক্তি"
+  },
+  "a lover of mankind": {
+    "meaning": "মানবপ্রেমী"
+  },
+  "a needle in a haystack": {
+    "meaning": "খড়ের গোটায় সুই"
+  },
+  "a person who eats too much": {
+    "meaning": "অত্যধিক খাওয়া ব্যক্তি"
+  },
+  "a person who is mentally ill": {
+    "meaning": "মানসিক রোগী"
+  },
+  "a person who loves music": {
+    "meaning": "সঙ্গীত প্রেমী"
+  },
+  "a piece of cake": {
+    "meaning": "একটি কেকের টুকরো"
+  },
+  "a place for storage of arms and ammunition": {
+    "meaning": "অস্ত্র ও গোলাবারুদ সংরক্ষণের স্থান"
+  },
+  "a post without any remuneration": {
+    "meaning": "কোনো বেতন ছাড়া পদ"
+  },
+  "a professional ride in horse races": {
+    "meaning": "ঘোড়দৌড়ে পেশাদার চাল"
+  },
+  "a show of hands": {
+    "meaning": "হাত তুলে ভোট"
+  },
+  "a square peg in a round hole": {
+    "meaning": "গোল গর্তে বর্গাকার পেগ"
+  },
+  "a storm in a tea cup": {
+    "meaning": "চা কাপে ঝড়"
+  },
+  "a type of tree": {
+    "meaning": "এক ধরনের গাছ"
+  },
+  "a wet blanket someone who": {
+    "meaning": "কেউ যিনি আনন্দকে বাধা দেন"
+  },
+  "a wide–ranging effort is being made to": {
+    "meaning": "ব্যাপক পরিসরে চেষ্টা করা হচ্ছে"
+  },
+  "abhorred": {
+    "meaning": "ঘৃণিত"
+  },
+  "ablaze": {
+    "meaning": "আগুনে জ্বলছে"
+  },
+  "abscond": {
+    "meaning": "পালিয়ে যাওয়া"
+  },
+  "absence of government rule": {
+    "meaning": "শাসনব্যবস্থার অভাব"
+  },
+  "access to safe water, sanitation and hygiene": {
+    "meaning": "নিরাপদ জল, স্যানিটেশন ও স্বাস্থ্যবিধির অ্যাক্সেস"
+  },
+  "accrual": {
+    "meaning": "সঞ্চয়"
+  },
+  "acquiesce": {
+    "meaning": "সম্মত হওয়া"
+  },
+  "act in accordance": {
+    "meaning": "অনুযায়ী কাজ করা"
+  },
+  "activate": {
+    "meaning": "সক্রিয় করা"
+  },
+  "adhere (v)": {
+    "meaning": "আঁকড়ে ধরা"
+  },
+  "admiring": {
+    "meaning": "প্রশংসা করা"
+  },
+  "adolescence": {
+    "meaning": "কৈশোর"
+  },
+  "adultery": {
+    "meaning": "ব্যভিচার"
+  },
+  "advisable": {
+    "meaning": "উপদেশযোগ্য"
+  },
+  "affiliation": {
+    "meaning": "সম্পৃক্ততা"
+  },
+  "affirmative": {
+    "meaning": "ইতিবাচক"
+  },
+  "affluent people tend to look upon illiteracy": {
+    "meaning": "ধনী মানুষ অশিক্ষাকে দেখে"
+  },
+  "after the rain stopped, the air smelled fresh": {
+    "meaning": "বৃষ্টি থামার পর, বাতাস সতেজ গন্ধ দিচ্ছিল"
+  },
+  "agility (n)": {
+    "meaning": "চটপটেমি"
+  },
+  "alacrity": {
+    "meaning": "তৎপরতা"
+  },
+  "all his attempts to save the wounded animal": {
+    "meaning": "আহত প্রাণীকে বাঁচানোর তার সমস্ত চেষ্টা"
+  },
+  "all in the same boat": {
+    "meaning": "একই পরিস্থিতিতে থাকা"
+  },
+  "all the employees feel that continuing working": {
+    "meaning": "সকল কর্মচারী মনে করেন যে কাজ চালিয়ে যাওয়া"
+  },
+  "alliance": {
+    "meaning": "জোট"
+  },
+  "ally": {
+    "meaning": "মিত্র"
+  },
+  "ally (n)": {
+    "meaning": "মিত্র"
+  },
+  "already": {
+    "meaning": "ইতিমধ্যে"
+  },
+  "although she was tired, she kept working": {
+    "meaning": "যদিও s/he ক্লান্ত ছিল, s/he কাজ চালিয়ে গেছে"
+  },
+  "although the new fashion trend was quite": {
+    "meaning": "যদিও নতুন ফ্যাশন ট্রেন্ড ছিল"
+  },
+  "always": {
+    "meaning": "সবসময়"
+  },
+  "ambivert": {
+    "meaning": "দ্বিমুখী ব্যক্তিত্ব"
+  },
+  "ambrosial": {
+    "meaning": "অমৃতের মতো"
+  },
+  "amenorrhea can cause a range of issues,": {
+    "meaning": "অ্যামেনোরিয়া একটি পরিসরের সমস্যা সৃষ্টি করতে পারে"
+  },
+  "ampleness": {
+    "meaning": "প্রচুরতা"
+  },
+  "amplify (v)": {
+    "meaning": "বৃদ্ধি করা"
+  },
+  "amputate": {
+    "meaning": "কর্তন করা"
+  },
+  "an area/place in which dead bodies are buried": {
+    "meaning": "মৃতদেহ সমাধিস্থ করার স্থান"
+  },
+  "an autoimmune disease is a condition in": {
+    "meaning": "অটোইমিউন ডিজিজ একটি অবস্থা"
+  },
+  "an axe to grind": {
+    "meaning": "কোনো ব্যক্তিগত স্বার্থ"
+  },
+  "an open book": {
+    "meaning": "একটি খোলা বই"
+  },
+  "an open space usually rectangular and enclosed in a": {
+    "meaning": "একটি খোলা স্থান সাধারণত আয়তক্ষেত্রাকার এবং একটি দ্বারা ঘেরা"
+  },
+  "an oxygen cylinder is used to deliver oxygen": {
+    "meaning": "অক্সিজেন সিলিন্ডার ব্যবহার করা হয় অক্সিজেন সরবরাহ করার জন্য"
+  },
+  "an unpleasant mixture of loud sounds": {
+    "meaning": "একটি অস্বস্তিকর উচ্চ শব্দের মিশ্রণ"
+  },
+  "answers": {
+    "meaning": "উত্তর"
+  },
+  "anthropology": {
+    "meaning": "নৃতত্ত্ব"
+  },
+  "anti-social": {
+    "meaning": "সামাজিক বিরোধী"
+  },
+  "anticipate (v)": {
+    "meaning": "অনুমান করা"
+  },
+  "antipathy (n)": {
+    "meaning": "ঘৃণা"
+  },
+  "antonym of the word ('regularity') from the": {
+    "meaning": "শব্দের ('regularity') বিপরীত শব্দ"
+  },
+  "any book on any subject risks irrelevance or": {
+    "meaning": "যেকোনো বিষয়ে যেকোনো বই অপ্রাসঙ্গিত বা"
+  },
+  "apologetic": {
+    "meaning": "ক্ষমা চাওয়া"
+  },
+  "appease (v)": {
+    "meaning": "শান্ত করা"
+  },
+  "applied": {
+    "meaning": "প্রয়োগিত"
+  },
+  "appointed": {
+    "meaning": "নিযুক্ত"
+  },
+  "apprehensive": {
+    "meaning": "উদ্বিগ্ন"
+  },
+  "apprise": {
+    "meaning": "অবহিত করা"
+  },
+  "armchair experts": {
+    "meaning": "আর্মচেয়ার বিশেষজ্ঞ"
+  },
+  "arsenal": {
+    "meaning": "অস্ত্রাগার"
+  },
+  "arthur has some strange ideas, but on this": {
+    "meaning": "আর্থারের কিছু অদ্ভুত ধারণা আছে, কিন্তু এই"
+  },
+  "assign": {
+    "meaning": "বরাদ্দ করা"
+  },
+  "assuage": {
+    "meaning": "শান্ত করা"
+  },
+  "at sixes and sevens with her": {
+    "meaning": "তার সাথে বিশৃঙ্খল"
+  },
+  "at the drop of a hat": {
+    "meaning": "তৎক্ষণাৎ"
+  },
+  "at the eleventh hour": {
+    "meaning": "শেষ মুহূর্তে"
+  },
+  "at top of your lungs": {
+    "meaning": "আপনার ফুসফুসের সর্বোচ্চ"
+  },
+  "atheist": {
+    "meaning": "নাস্তিক"
+  },
+  "atonement": {
+    "meaning": "ক্ষমা"
+  },
+  "attentive 2. reluctant": {
+    "meaning": "মনোযোগী 2. অনিচ্ছুক"
+  },
+  "attract (v)": {
+    "meaning": "আকর্ষণ করা"
+  },
+  "auspicious 4. propitious": {
+    "meaning": "শুভ 4. অনুকূল"
+  },
+  "autobiography 4. biology": {
+    "meaning": "আত্মজীবনী 4. জীববিজ্ঞান"
+  },
+  "automatised": {
+    "meaning": "স্বয়ংক্রিয় করা"
+  },
+  "available": {
+    "meaning": "উপলব্ধ"
+  },
+  "avaricious": {
+    "meaning": "লোভী"
+  },
+  "averted (v)": {
+    "meaning": "এড়ানো"
+  },
+  "avidly": {
+    "meaning": "আগ্রহের সাথে"
+  },
+  "avoid (v)": {
+    "meaning": "এড়ানো"
+  },
+  "avoid meeting": {
+    "meaning": "দেখা এড়ানো"
+  },
+  "award": {
+    "meaning": "পুরস্কার"
+  },
+  "barbarous": {
+    "meaning": "অমানবিক"
+  },
+  "bawdy": {
+    "meaning": "অশ্লীল"
+  },
+  "bear fruit": {
+    "meaning": "ফল দেওয়া"
+  },
+  "beat around the bush": {
+    "meaning": "প্রত্যক্ষ কথা না বলা"
+  },
+  "behind": {
+    "meaning": "পেছনে"
+  },
+  "bell the cat": {
+    "meaning": "বিপজ্জনক কাজ করা"
+  },
+  "beloved": {
+    "meaning": "প্রিয়"
+  },
+  "berserk": {
+    "meaning": "উন্মাদ"
+  },
+  "betrayal": {
+    "meaning": "বিশ্বাসঘাতকতা"
+  },
+  "betterment (n)": {
+    "meaning": "উন্নতি"
+  },
+  "between a rock and a hard": {
+    "meaning": "দুটি সমস্যার মধ্যে আটকা"
+  },
+  "bewilder": {
+    "meaning": "বিভ্রান্ত করা"
+  },
+  "bhagat singh was a young firebrand": {
+    "meaning": "ভগত সিং ছিলেন একজন তরুণ বিদ্রোহী"
+  },
+  "whose": {
+    "meaning": "যার"
+  },
+  "bibliography": {
+    "meaning": "গ্রন্থতালিকা"
+  },
+  "bibliophile": {
+    "meaning": "বই প্রেমিক"
+  },
+  "bickering": {
+    "meaning": "ঝগড়া"
+  },
+  "bifurcate": {
+    "meaning": "দ্বিখণ্ডিত"
+  },
+  "bifurcate (v)": {
+    "meaning": "দ্বিখণ্ডিত করা"
+  },
+  "biography": {
+    "meaning": "জীবনী"
+  },
+  "bite the bullet": {
+    "meaning": "সংকটের মুখোমুখি হওয়া"
+  },
+  "bitten off more than you can": {
+    "meaning": "যা করতে পারবেন না তার চেয়ে বেশি করার চেষ্টা করা"
+  },
+  "black sheep": {
+    "meaning": "কুখ্যাত ব্যক্তি"
+  },
+  "blaze": {
+    "meaning": "আগুন"
+  },
+  "blend (v)": {
+    "meaning": "মিশ্রিত করা"
+  },
+  "blessed": {
+    "meaning": "আশীর্বাদপ্রাপ্ত"
+  },
+  "blindsided": {
+    "meaning": "অপ্রত্যাশিতভাবে আক্রান্ত"
+  },
+  "blinking": {
+    "meaning": "চোখ পিটপিট করা"
+  },
+  "blue in the face": {
+    "meaning": "অতিরিক্ত চেষ্টা করে"
+  },
+  "body and soul": {
+    "meaning": "সম্পূর্ণভাবে"
+  },
+  "bonafide": {
+    "meaning": "আসল"
+  },
+  "bonded": {
+    "meaning": "বন্ডেড"
+  },
+  "bonfire": {
+    "meaning": "চিতা"
+  },
+  "bonsai": {
+    "meaning": "বনসাই"
+  },
+  "booklover": {
+    "meaning": "বই প্রেমিক"
+  },
+  "bore": {
+    "meaning": "বিরক্তিকর"
+  },
+  "bossy": {
+    "meaning": "আদেশকারী"
+  },
+  "botanical": {
+    "meaning": "উদ্ভিদবিজ্ঞান"
+  },
+  "both songs have been reworked giving them": {
+    "meaning": "উভয় গানই পুনর্নির্মাণ করা হয়েছে"
+  },
+  "bother": {
+    "meaning": "বিরক্ত করা"
+  },
+  "break a leg": {
+    "meaning": "সৌভাগ্য কামনা"
+  },
+  "breeze": {
+    "meaning": "হালকা বাতাস"
+  },
+  "brought to light to disclose": {
+    "meaning": "প্রকাশ করা"
+  },
+  "built by king narasimhadeva i of the eastern": {
+    "meaning": "পূর্ব গঙ্গা রাজবংশের রাজা নরসিংহদেব প্রথম দ্বারা নির্মিত"
+  },
+  "bulging": {
+    "meaning": "ফোলানো"
+  },
+  "bulging (n)": {
+    "meaning": "ফোলানো অংশ"
+  },
+  "buried the hatchet": {
+    "meaning": "শত্রুতা শেষ করা"
+  },
+  "burn the midnight oil": {
+    "meaning": "রাত জেগে কাজ করা"
+  },
+  "bury the hatchet": {
+    "meaning": "শত্রুতা শেষ করা"
+  },
+  "bust": {
+    "meaning": "ভাঙ্গা"
+  },
+  "butler": {
+    "meaning": "বাটলার"
+  },
+  "cacophony (n)": {
+    "meaning": "বিশৃঙ্খল শব্দ"
+  },
+  "calibrate": {
+    "meaning": "ক্যালিব্রেট করা"
+  },
+  "call it a day": {
+    "meaning": "কাজ শেষ করা"
+  },
+  "called it a day": {
+    "meaning": "কাজ শেষ করা"
+  },
+  "callow": {
+    "meaning": "অপরিপক্ব"
+  },
+  "candor": {
+    "meaning": "সরলতা"
+  },
+  "caprice": {
+    "meaning": "ইচ্ছামতী"
+  },
+  "caprice (n)": {
+    "meaning": "ইচ্ছামতী"
+  },
+  "captivating": {
+    "meaning": "মুগ্ধকর"
+  },
+  "captivity (n)": {
+    "meaning": "বন্দীদশা"
+  },
+  "cardiologist": {
+    "meaning": "হৃদরোগ বিশেষজ্ঞ"
+  },
+  "care for": {
+    "meaning": "যত্ন করা"
+  },
+  "carnage": {
+    "meaning": "হত্যাকাণ্ড"
+  },
+  "carrousel": {
+    "meaning": "ঘোড়ায় চড়ার খেলা"
+  },
+  "catch a tartar": {
+    "meaning": "একজন কঠিন প্রতিপক্ষের সম্মুখীন হওয়া"
+  },
+  "catholic": {
+    "meaning": "ক্যাথলিক"
+  },
+  "ceased": {
+    "meaning": "বন্ধ হওয়া"
+  },
+  "celebrated": {
+    "meaning": "উদযাপিত"
+  },
+  "cemetery": {
+    "meaning": "কবরস্থান"
+  },
+  "chasten": {
+    "meaning": "শাস্তি দেওয়া"
+  },
+  "chatty": {
+    "meaning": "কথাবার্তার"
+  },
+  "cheerfulness": {
+    "meaning": "আনন্দ"
+  },
+  "chewing the cud": {
+    "meaning": "পশুর পাকস্থলীতে খাবার পুনর্বিবর্ধন"
+  },
+  "childhood": {
+    "meaning": "শৈশব"
+  },
+  "china expects to welcome back indian students": {
+    "meaning": "চীন ভারতীয় শিক্ষার্থীদের ফিরে আসার আশা করছে"
+  },
+  "choose the antonym of the word": {
+    "meaning": "শব্দের বিপরীত শব্দ বেছে নিন"
+  },
+  "choose the antonym of the word (‘effervescent’)": {
+    "meaning": "শব্দের ('effervescent') বিপরীত শব্দ বেছে নিন"
+  },
+  "choose the antonym of the word (‘fetish’)": {
+    "meaning": "শব্দের ('fetish') বিপরীত শব্দ বেছে নিন"
+  },
+  "choppy": {
+    "meaning": "ঢেউযুক্ত"
+  },
+  "cinema": {
+    "meaning": "চলচ্চিত্র"
+  },
+  "circumstantial": {
+    "meaning": "পরিস্থিতিগত"
+  },
+  "clade": {
+    "meaning": "ক্লেড"
+  },
+  "clamant": {
+    "meaning": "জোরালো আবেদনকারী"
+  },
+  "clarify (v)": {
+    "meaning": "স্পষ্ট করা"
+  },
+  "clean 2. untidy": {
+    "meaning": "পরিষ্কার ২. অস্বচ্ছ"
+  },
+  "cleanse": {
+    "meaning": "পরিষ্কার করা"
+  },
+  "clear as mud": {
+    "meaning": "মাটির মতো স্পষ্ট"
+  },
+  "clear the decks": {
+    "meaning": "প্রস্তুত করা"
+  },
+  "clementi": {
+    "meaning": "ক্লেমেন্টি"
+  },
+  "coalition": {
+    "meaning": "জোট"
+  },
+  "coarseness": {
+    "meaning": "কোমলতার অভাব"
+  },
+  "antonym of the word (‘regularity’) from the": {
+    "meaning": "শব্দের ('regularity') বিপরীতার্থক শব্দ"
   }
 }
