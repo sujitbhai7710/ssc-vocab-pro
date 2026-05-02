@@ -268,8 +268,17 @@ function WordDetailCard({ data }: { data: WordExplainData }) {
 
   const handleSpeak = () => {
     setSpeaking(true);
-    speakWord(data.word, data.audioUrl);
-    setTimeout(() => setSpeaking(false), 1500);
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(data.word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.8;
+      utterance.onend = () => setSpeaking(false);
+      utterance.onerror = () => setSpeaking(false);
+      window.speechSynthesis.speak(utterance);
+    } else {
+      setTimeout(() => setSpeaking(false), 1500);
+    }
   };
 
   return (

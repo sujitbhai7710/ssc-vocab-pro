@@ -7,6 +7,7 @@ import { LandingPage } from '@/components/landing';
 import { AuthForm } from '@/components/auth-form';
 import { Dashboard } from '@/components/dashboard';
 import { ReadMode } from '@/components/read-mode';
+import { StudyMode } from '@/components/study-mode';
 import { TestSetup } from '@/components/test-setup';
 import { TestTaking } from '@/components/test-taking';
 import { TestResults } from '@/components/test-results';
@@ -16,23 +17,11 @@ import { ReadList } from '@/components/read-list';
 export default function Home() {
   const { currentView, isLoggedIn, setCurrentView, setUser, loadUserData } = useAppStore();
 
-  // Restore user session and load data from D1 on mount
+  // Load user data from D1 on mount (Zustand persist already handles state hydration)
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem('ssc-vocab-store');
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        if (parsed?.state?.user) {
-          setUser(parsed.state.user);
-          // Load user data from Cloudflare D1
-          loadUserData();
-        }
-        if (parsed?.state?.currentView && parsed.state.currentView !== 'landing') {
-          setCurrentView(parsed.state.currentView);
-        }
-      }
-    } catch {
-      // Ignore parse errors
+    const { user, isLoggedIn } = useAppStore.getState();
+    if (isLoggedIn && user?.id) {
+      loadUserData();
     }
   }, []);
 
@@ -46,6 +35,8 @@ export default function Home() {
         return <Dashboard />;
       case 'read':
         return <ReadMode />;
+      case 'study':
+        return <StudyMode />;
       case 'test-setup':
         return <TestSetup />;
       case 'test-taking':

@@ -18,6 +18,7 @@ export type AppView =
   | 'auth'
   | 'dashboard'
   | 'read'
+  | 'study'
   | 'test-setup'
   | 'test-taking'
   | 'test-results'
@@ -356,7 +357,9 @@ export const useAppStore = create<AppState>()(
       name: 'ssc-vocab-store',
       partialize: (state) => ({
         user: state.user,
-        currentView: state.currentView,
+        currentView: ['dashboard', 'read', 'study', 'landing'].includes(state.currentView)
+          ? state.currentView
+          : 'dashboard',
       }),
     }
   )

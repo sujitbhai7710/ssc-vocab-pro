@@ -200,7 +200,16 @@ export function TestTaking() {
     }
   }, [autoSubmitTrigger, doSubmit]);
 
-  if (!currentQuestion) return null;
+  if (!currentQuestion) {
+    return (
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <div className="text-center">
+          <p className="text-gray-500 mb-4">No test in progress</p>
+          <Button onClick={() => setCurrentView('test-setup')}>Set Up a Test</Button>
+        </div>
+      </div>
+    );
+  }
 
   const answeredCount = testAnswers.filter((a) => a.selectedOption !== null).length;
   const markedCount = testAnswers.filter((a) => a.markedForReview).length;

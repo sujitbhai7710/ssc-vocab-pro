@@ -23,8 +23,6 @@ export function TestResults() {
     currentTestResult,
     setCurrentView,
     resetTest,
-    addProblematicWord,
-    problematicWords,
   } = useAppStore();
 
   if (!currentTestResult) {
@@ -62,25 +60,6 @@ export function TestResults() {
   const handleNewTest = () => {
     resetTest();
     setCurrentView('test-setup');
-  };
-
-  const addWrongToProblematic = () => {
-    answers.forEach((answer, idx) => {
-      if (
-        answer.selectedOption !== null &&
-        answer.selectedOption !== questions[idx].correct_answer
-      ) {
-        const q = questions[idx];
-        addProblematicWord({
-          word: q.word,
-          type: q.type,
-          exam: q.exam,
-          source: q.source,
-          questionId: q.id,
-          addedAt: Date.now(),
-        });
-      }
-    });
   };
 
   const getScoreColor = () => {

@@ -12,11 +12,13 @@ import {
   Menu,
   X,
   ListChecks,
+  GraduationCap,
 } from 'lucide-react';
 import { useState } from 'react';
 
 const navItems: { view: AppView; label: string; icon: React.ReactNode }[] = [
   { view: 'dashboard', label: 'Dashboard', icon: <Home className="h-4 w-4" /> },
+  { view: 'study', label: 'Study', icon: <GraduationCap className="h-4 w-4" /> },
   { view: 'read', label: 'Read Mode', icon: <BookOpen className="h-4 w-4" /> },
   { view: 'test-setup', label: 'Test Mode', icon: <ClipboardList className="h-4 w-4" /> },
   { view: 'problematic', label: 'Problematic', icon: <AlertTriangle className="h-4 w-4" /> },
@@ -30,7 +32,8 @@ export function NavHeader() {
   const handleLogout = () => {
     setUser(null);
     setCurrentView('landing');
-    // Clear D1-sourced data from local state on logout
+    // Clear all user data on logout, including test state
+    useAppStore.getState().resetTest();
     useAppStore.setState({
       problematicWords: [],
       readWords: [],
@@ -42,7 +45,7 @@ export function NavHeader() {
     // Landing and auth are always accessible
     // Read mode is viewable, but marking requires auth (handled in component)
     // Everything else requires login
-    if (!isLoggedIn && view !== 'landing' && view !== 'auth' && view !== 'read') {
+    if (!isLoggedIn && view !== 'landing' && view !== 'auth' && view !== 'read' && view !== 'study') {
       setCurrentView('auth');
     } else {
       setCurrentView(view);
@@ -55,7 +58,7 @@ export function NavHeader() {
       <div className="flex h-14 items-center px-4 md:px-6 max-w-7xl mx-auto">
         {/* Logo */}
         <button
-          onClick={() => handleNavClick('dashboard')}
+          onClick={() => handleNavClick(isLoggedIn ? 'dashboard' : 'landing')}
           className="flex items-center gap-2 mr-4 md:mr-6 hover:opacity-80 transition-opacity"
         >
           <div className="h-8 w-8 rounded-md bg-[#1a365d] flex items-center justify-center">

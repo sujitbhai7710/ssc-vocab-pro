@@ -18,6 +18,7 @@ import {
   ArrowRight,
   ListChecks,
   RotateCcw,
+  GraduationCap,
 } from 'lucide-react';
 import {
   Dialog,
@@ -60,7 +61,7 @@ export function Dashboard() {
     if (isLoggedIn && user?.id) {
       loadUserData();
     }
-  }, []);
+  }, [isLoggedIn, user?.id, loadUserData]);
 
   // Compute stats
   const totalQuestions = useMemo(
@@ -179,7 +180,23 @@ export function Dashboard() {
       </div>
 
       {/* Quick Actions */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <Card
+          className="cursor-pointer hover:shadow-md transition-all hover:scale-[1.02] active:scale-[0.98] border-l-4 border-l-purple-500"
+          onClick={() => setCurrentView('study')}
+        >
+          <CardContent className="p-4 flex items-center gap-4">
+            <div className="h-12 w-12 rounded-lg bg-purple-100 flex items-center justify-center shrink-0">
+              <GraduationCap className="h-6 w-6 text-purple-600" />
+            </div>
+            <div className="flex-1">
+              <h3 className="font-semibold text-[#1a365d]">Study Mode</h3>
+              <p className="text-sm text-gray-500">Word list with meanings</p>
+            </div>
+            <ArrowRight className="h-5 w-5 text-gray-400" />
+          </CardContent>
+        </Card>
+
         <Card
           className="cursor-pointer hover:shadow-md transition-all hover:scale-[1.02] active:scale-[0.98] border-l-4 border-l-[#1a365d]"
           onClick={() => setCurrentView('read')}

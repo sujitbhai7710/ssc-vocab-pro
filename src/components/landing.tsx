@@ -3,7 +3,7 @@
 import { useAppStore } from '@/lib/store';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { BookOpen, ClipboardList, AlertTriangle, ArrowRight, Trophy, Target, Brain } from 'lucide-react';
+import { BookOpen, ClipboardList, AlertTriangle, ArrowRight, Trophy, Target, Brain, GraduationCap } from 'lucide-react';
 
 export function LandingPage() {
   const { setCurrentView, isLoggedIn } = useAppStore();
@@ -17,7 +17,7 @@ export function LandingPage() {
   };
 
   const handleBrowse = () => {
-    setCurrentView('read');
+    setCurrentView('study');
   };
 
   return (
@@ -87,6 +87,18 @@ export function LandingPage() {
           </p>
 
           <div className="grid md:grid-cols-3 gap-6">
+            <Card className="border-l-4 border-l-purple-500 hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="h-12 w-12 rounded-lg bg-purple-100 flex items-center justify-center mb-4">
+                  <GraduationCap className="h-6 w-6 text-purple-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-[#1a365d] mb-2">Study Mode</h3>
+                <p className="text-gray-500 text-sm">
+                  Study all words with English & Bengali meanings, example sentences, synonyms, and antonyms. No MCQs — just pure vocabulary learning.
+                </p>
+              </CardContent>
+            </Card>
+
             <Card className="border-l-4 border-l-[#1a365d] hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
                 <div className="h-12 w-12 rounded-lg bg-blue-100 flex items-center justify-center mb-4">
@@ -107,18 +119,6 @@ export function LandingPage() {
                 <h3 className="text-lg font-semibold text-[#1a365d] mb-2">Test Mode</h3>
                 <p className="text-gray-500 text-sm">
                   Take timed tests that replicate the official SSC CBT exam interface. Choose sections, set question ranges, and practice with randomized options.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-l-4 border-l-red-500 hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="h-12 w-12 rounded-lg bg-red-100 flex items-center justify-center mb-4">
-                  <AlertTriangle className="h-6 w-6 text-red-500" />
-                </div>
-                <h3 className="text-lg font-semibold text-[#1a365d] mb-2">Problematic Words</h3>
-                <p className="text-gray-500 text-sm">
-                  Mark difficult words and revisit them. Take dedicated tests on just your problematic words. Add notes and track improvement over time.
                 </p>
               </CardContent>
             </Card>
