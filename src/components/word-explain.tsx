@@ -28,8 +28,9 @@ interface DictEntry {
 }
 
 interface BengaliEntry {
-  bengali: string;
-  bengali_translit: string;
+  bengali?: string;
+  bengali_translit?: string;
+  meaning?: string;
 }
 
 interface WordExplainData {
@@ -132,8 +133,8 @@ async function getWordExplainData(word: string): Promise<WordExplainData> {
   // Bengali meaning
   const bengaliEntry = bengaliMap.get(key);
   if (bengaliEntry) {
-    result.bengali = bengaliEntry.bengali;
-    result.bengaliTranslit = bengaliEntry.bengali_translit;
+    result.bengali = bengaliEntry.bengali || bengaliEntry.meaning || '';
+    result.bengaliTranslit = bengaliEntry.bengali_translit || '';
   }
 
   if (!dictEntry && !bengaliEntry) {
