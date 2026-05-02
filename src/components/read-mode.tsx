@@ -287,16 +287,12 @@ function QuestionList({
   const batchMarkRead = () => {
     if (requireAuth()) return;
     let addedCount = 0;
-    let removedCount = 0;
+    let skippedCount = 0;
     selectedQuestions.forEach(key => {
       const [word, type] = key.split('::');
-      // Find the question to get exam info
       const question = section.questions.find(q => q.word === word && q.type === type);
       const isRead = readWords.some(rw => rw.word === word && rw.type === type);
-      if (isRead) {
-        removeReadWord(word, type);
-        removedCount++;
-      } else {
+      if (!isRead) {
         addReadWord({
           word,
           type,
@@ -304,11 +300,13 @@ function QuestionList({
           readAt: Date.now(),
         });
         addedCount++;
+      } else {
+        skippedCount++;
       }
     });
     toast({
-      title: 'Batch Update',
-      description: `${addedCount} marked as read${removedCount > 0 ? `, ${removedCount} removed from read` : ''}`,
+      title: 'Marked as Read',
+      description: `${addedCount} marked as read${skippedCount > 0 ? `, ${skippedCount} already read` : ''}`,
     });
     setSelectedQuestions(new Set());
     setSelectMode(false);
@@ -317,15 +315,12 @@ function QuestionList({
   const batchMarkProblematic = () => {
     if (requireAuth()) return;
     let addedCount = 0;
-    let removedCount = 0;
+    let skippedCount = 0;
     selectedQuestions.forEach(key => {
       const [word, type] = key.split('::');
       const question = section.questions.find(q => q.word === word && q.type === type);
       const isProb = problematicWords.some(pw => pw.word === word && pw.type === type);
-      if (isProb) {
-        removeProblematicWord(word, type);
-        removedCount++;
-      } else {
+      if (!isProb) {
         addProblematicWord({
           word,
           type,
@@ -335,11 +330,13 @@ function QuestionList({
           addedAt: Date.now(),
         });
         addedCount++;
+      } else {
+        skippedCount++;
       }
     });
     toast({
-      title: 'Batch Update',
-      description: `${addedCount} marked as problematic${removedCount > 0 ? `, ${removedCount} removed from problematic` : ''}`,
+      title: 'Marked as Problematic',
+      description: `${addedCount} marked as problematic${skippedCount > 0 ? `, ${skippedCount} already marked` : ''}`,
     });
     setSelectedQuestions(new Set());
     setSelectMode(false);

@@ -29,7 +29,7 @@ export function LandingPage() {
           <div className="text-center max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 text-sm mb-6 backdrop-blur-sm">
               <span className="h-2 w-2 rounded-full bg-[#f97316] animate-pulse" />
-              SSC 2024 Exam Preparation
+              SSC 2024-25 Exam Preparation
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
               Master SSC Vocabulary
@@ -37,7 +37,7 @@ export function LandingPage() {
             </h1>
             <p className="text-lg md:text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
               Comprehensive vocabulary preparation for CGL, CHSL, MTS, GD, CPO & Stenographer exams.
-              2800+ questions from previous year papers with smart learning tools.
+              4600+ questions from previous year papers with smart learning tools.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button
@@ -51,7 +51,7 @@ export function LandingPage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white/30 text-white hover:bg-white/10 text-lg px-8 h-12"
+                className="border-white/30 bg-white/10 text-white hover:bg-white/20 hover:text-white text-lg px-8 h-12"
                 onClick={handleBrowse}
               >
                 Browse Vocabulary
@@ -62,10 +62,10 @@ export function LandingPage() {
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 max-w-3xl mx-auto">
             {[
-              { label: 'Questions', value: '2800+' },
+              { label: 'Questions', value: '4600+' },
               { label: 'Exams', value: '6' },
-              { label: 'Sections', value: '13' },
-              { label: 'Years Covered', value: '2019-23' },
+              { label: 'Sections', value: '12' },
+              { label: 'Years Covered', value: '2019-25' },
             ].map((stat) => (
               <div key={stat.label} className="text-center bg-white/10 rounded-lg p-3 backdrop-blur-sm">
                 <div className="text-2xl md:text-3xl font-bold text-[#f97316]">{stat.value}</div>
@@ -144,13 +144,6 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-[#1a365d] text-white py-6">
-        <div className="max-w-7xl mx-auto px-4 text-center text-sm text-blue-200">
-          <p>SSC Vocab Pro — Comprehensive vocabulary preparation for SSC examinations</p>
-          <p className="mt-1 text-blue-300/60">Data sourced from SSC previous year question papers (2019-2023)</p>
-        </div>
-      </footer>
     </div>
   );
 }

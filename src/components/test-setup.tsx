@@ -488,9 +488,9 @@ export function TestSetup() {
       </Card>
 
       {/* Summary */}
-      <Card className="mb-6 bg-[#1a365d] text-white">
-        <CardContent className="p-4">
-          <div className="flex items-center justify-between">
+      <div className="mb-6 rounded-xl border border-[#2d4a7c]/30 bg-gradient-to-r from-[#1a365d] to-[#2d4a7c] text-white shadow-sm py-6">
+        <div className="px-6">
+          <div className="flex items-center justify-between flex-wrap gap-4">
             <div>
               <p className="text-sm text-blue-200">Total Questions</p>
               <p className="text-3xl font-bold">{totalQuestions}</p>
@@ -511,8 +511,8 @@ export function TestSetup() {
               Start Test
             </Button>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }
