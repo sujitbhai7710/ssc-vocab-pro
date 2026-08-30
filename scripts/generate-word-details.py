@@ -15,9 +15,12 @@ sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', buffering=1)
 
 from openai import OpenAI
 
-NVIDIA_API_KEY = "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"
-NVIDIA_BASE_URL = "https://integrate.api.nvidia.com/v1"
-MODEL = "qwen/qwen3-next-80b-a3b-instruct"
+NVIDIA_API_KEY = os.environ.get("NVIDIA_API_KEY", "")
+if not NVIDIA_API_KEY:
+    print("ERROR: set NVIDIA_API_KEY env var (get one at https://build.nvidia.com/settings/api-keys)", file=sys.stderr)
+    sys.exit(1)
+NVIDIA_BASE_URL = os.environ.get("NVIDIA_BASE_URL", "https://integrate.api.nvidia.com/v1")
+MODEL = os.environ.get("NVIDIA_MODEL", "qwen/qwen3-next-80b-a3b-instruct")
 OUTPUT_FILE = "public/word-details.json"
 
 # Load dataset
